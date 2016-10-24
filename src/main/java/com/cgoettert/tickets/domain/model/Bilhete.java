@@ -16,7 +16,7 @@ import org.apache.commons.lang3.Validate;
  * @author cgoettert
  */
 @Getter
-class Bilhete {
+public class Bilhete {
 
     private String codigo;
     private Date dataAtivacao;

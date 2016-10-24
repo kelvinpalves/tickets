@@ -12,7 +12,7 @@ import lombok.Getter;
  * @author cgoettert
  */
 @Getter
-class Veiculo {
+public class Veiculo {
     
     private String placa;
     private String descricao;

@@ -15,7 +15,7 @@ import org.apache.commons.lang3.RandomStringUtils;
  * @author cgoettert
  */
 @Getter
-class Compra {
+public class Compra {
     
     private String codigo;
     private BigDecimal valor;

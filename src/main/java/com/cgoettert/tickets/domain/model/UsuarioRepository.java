@@ -11,8 +11,8 @@ package com.cgoettert.tickets.domain.model;
  */
 public interface UsuarioRepository {
     
-    Usuario get(String cpfCnpj);
+    public Usuario get(String cpfCnpj);
     
-    void store(Usuario usuario);
+    public void store(Usuario usuario);
     
 }

@@ -16,7 +16,7 @@ import org.apache.commons.lang3.Validate;
  * @author cgoettert
  */
 @Getter
-class Usuario {
+public class Usuario {
 
     private String nome;
     private String cpfCnpj;
@@ -41,7 +41,7 @@ class Usuario {
         this.bilhetesNaoPagos = new ArrayList<>();
     }
 
-    public void comprar(Integer valor) {
+    public void comprarCredito(Integer valor) {
 
         Validate.notNull(valor);
         Validate.isTrue(valor > 0);
@@ -53,7 +53,7 @@ class Usuario {
 
     }
 
-    public void ativarBilhete(String placa, Integer minutos) {
+    public Bilhete ativarBilhete(String placa, Integer minutos) {
 
         Veiculo veiculo = veiculos.stream()
                 .filter(v -> v.getPlaca().equals(placa))
@@ -66,9 +66,10 @@ class Usuario {
 
         bilhetes.add(bilhete);
 
+        return bilhete;
     }
     
-    public void regularizarBilhete(String codigo) {
+    public Bilhete regularizarBilhete(String codigo) {
         Bilhete bilhete = bilhetesNaoPagos.stream()
                 .filter(v -> v.getCodigo().equals(codigo))
                 .findAny()
@@ -81,6 +82,8 @@ class Usuario {
         saldo = saldo.subtract(bilhete.getValor());
         
         bilhetes.add(bilhete);
+        
+        return bilhete;
     }
 
 }
