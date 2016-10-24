@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -26,6 +25,7 @@ class Usuario {
     private List<Veiculo> veiculos;
     private List<Compra> compras;
     private List<Bilhete> bilhetes;
+    private List<Bilhete> bilhetesNaoPagos;
 
     private Usuario() {
     }
@@ -38,6 +38,7 @@ class Usuario {
         this.veiculos = new ArrayList<>();
         this.compras = new ArrayList<>();
         this.bilhetes = new ArrayList<>();
+        this.bilhetesNaoPagos = new ArrayList<>();
     }
 
     public void comprar(Integer valor) {
@@ -68,7 +69,18 @@ class Usuario {
     }
     
     public void regularizarBilhete(String codigo) {
+        Bilhete bilhete = bilhetesNaoPagos.stream()
+                .filter(v -> v.getCodigo().equals(codigo))
+                .findAny()
+                .orElse(null);
         
+        Validate.notNull(bilhete);
+
+        bilhetesNaoPagos.remove(bilhete);
+        
+        saldo = saldo.subtract(bilhete.getValor());
+        
+        bilhetes.add(bilhete);
     }
 
 }
