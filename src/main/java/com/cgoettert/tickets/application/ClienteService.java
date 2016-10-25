@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  *
  * @author cgoettert
  */
-public interface UsuarioService {
+public interface ClienteService {
     
     public void comprarCredito(String cpfCnpj, Integer valor);
     

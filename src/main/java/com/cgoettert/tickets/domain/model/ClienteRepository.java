@@ -9,10 +9,10 @@ package com.cgoettert.tickets.domain.model;
  *
  * @author cgoettert
  */
-public interface UsuarioRepository {
+public interface ClienteRepository {
     
-    public Usuario get(String cpfCnpj);
+    public Cliente get(String cpfCnpj);
     
-    public void store(Usuario usuario);
+    public void store(Cliente usuario);
     
 }

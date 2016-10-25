@@ -16,7 +16,7 @@ import org.apache.commons.lang3.Validate;
  * @author cgoettert
  */
 @Getter
-public class Usuario {
+public class Cliente {
 
     private String nome;
     private String cpfCnpj;
@@ -27,10 +27,10 @@ public class Usuario {
     private List<Bilhete> bilhetes;
     private List<Bilhete> bilhetesNaoPagos;
 
-    private Usuario() {
+    private Cliente() {
     }
 
-    public Usuario(String nome, String cpfCnpj) {
+    public Cliente(String nome, String cpfCnpj) {
         this.nome = nome;
         this.cpfCnpj = cpfCnpj;
         this.saldo = new BigDecimal("0");

@@ -5,10 +5,10 @@
  */
 package com.cgoettert.tickets.application.impl;
 
-import com.cgoettert.tickets.application.UsuarioService;
+import com.cgoettert.tickets.application.ClienteService;
 import com.cgoettert.tickets.domain.model.Bilhete;
-import com.cgoettert.tickets.domain.model.Usuario;
-import com.cgoettert.tickets.domain.model.UsuarioRepository;
+import com.cgoettert.tickets.domain.model.Cliente;
+import com.cgoettert.tickets.domain.model.ClienteRepository;
 import java.math.BigDecimal;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -18,39 +18,39 @@ import javax.inject.Inject;
  * @author cgoettert
  */
 @RequestScoped
-public class UsuarioServiceImpl implements UsuarioService {
+public class ClienteServiceImpl implements ClienteService {
 
-    private UsuarioRepository usuarioRepository;
+    private ClienteRepository clienteRepository;
     
-    private UsuarioServiceImpl() {
+    private ClienteServiceImpl() {
     }
 
     @Inject
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
+    public ClienteServiceImpl(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
     }
         
     @Override
     public void comprarCredito(String cpfCnpj, Integer valor) {
-        Usuario usuario = usuarioRepository.get(cpfCnpj);
+        Cliente usuario = clienteRepository.get(cpfCnpj);
         usuario.comprarCredito(valor);
     }
 
     @Override
     public BigDecimal getSaldo(String cpfCnpj) {
-        Usuario usuario = usuarioRepository.get(cpfCnpj);
+        Cliente usuario = clienteRepository.get(cpfCnpj);
         return usuario.getSaldo();
     }
 
     @Override
     public Bilhete ativarBilhete(String cpfCnpj, String placa, Integer minutos) {
-        Usuario usuario = usuarioRepository.get(cpfCnpj);
+        Cliente usuario = clienteRepository.get(cpfCnpj);
         return usuario.ativarBilhete(placa, minutos);
     }
 
     @Override
     public Bilhete regularizarBilhete(String cpfCnpj, String codigo) {
-        Usuario usuario = usuarioRepository.get(cpfCnpj);
+        Cliente usuario = clienteRepository.get(cpfCnpj);
         return usuario.regularizarBilhete(codigo);
     }
     
