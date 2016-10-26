@@ -6,7 +6,7 @@
 package com.cgoettert.tickets.application;
 
 import com.cgoettert.tickets.domain.model.Bilhete;
-import java.math.BigDecimal;
+import com.cgoettert.tickets.domain.model.Cliente;
 
 /**
  *
@@ -16,7 +16,7 @@ public interface ClienteService {
     
     public void comprarCredito(String cpfCnpj, Integer valor);
     
-    public BigDecimal getSaldo(String cpfCnpj);
+    public Cliente getCliente(String cpfCnpj);
     
     public Bilhete ativarBilhete(String cpfCnpj, String placa, Integer minutos);
     

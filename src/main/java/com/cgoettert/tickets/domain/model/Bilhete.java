@@ -6,6 +6,7 @@
 package com.cgoettert.tickets.domain.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import lombok.Getter;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -36,7 +37,7 @@ public class Bilhete {
         this.dataAtivacao = new Date();
         this.minutos = minutos;
         this.veiculo = veiculo;
-        this.valor = new BigDecimal(minutos).multiply(new BigDecimal("4.16666666667"));
+        this.valor = new BigDecimal(minutos).multiply(new BigDecimal("0.04166666666")).setScale(2, RoundingMode.CEILING);
     }
 
 }

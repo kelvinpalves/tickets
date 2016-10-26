@@ -25,7 +25,6 @@ public class Cliente {
     private List<Veiculo> veiculos;
     private List<Compra> compras;
     private List<Bilhete> bilhetes;
-    private List<Bilhete> bilhetesNaoPagos;
 
     private Cliente() {
     }
@@ -38,7 +37,8 @@ public class Cliente {
         this.veiculos = new ArrayList<>();
         this.compras = new ArrayList<>();
         this.bilhetes = new ArrayList<>();
-        this.bilhetesNaoPagos = new ArrayList<>();
+        
+        veiculos.add(new Veiculo("INK8069", "polo prata"));
     }
 
     public void comprarCredito(Integer valor) {
@@ -62,22 +62,26 @@ public class Cliente {
         
         Bilhete bilhete = new Bilhete(veiculo, minutos);
 
-        saldo = saldo.subtract(bilhete.getValor());
-
+        Validate.isTrue(saldo.compareTo(bilhete.getValor()) != -1);
+        
+        Compra compra = new Compra(bilhete.getValor().negate());
+        
         bilhetes.add(bilhete);
+        compras.add(compra);
+        
+        saldo = saldo.subtract(bilhete.getValor());
 
         return bilhete;
     }
     
     public Bilhete regularizarBilhete(String codigo) {
-        Bilhete bilhete = bilhetesNaoPagos.stream()
-                .filter(v -> v.getCodigo().equals(codigo))
-                .findAny()
-                .orElse(null);
-        
-        Validate.notNull(bilhete);
+//        Bilhete bilhete = bilhetesNaoPagos.stream()
+//                .filter(v -> v.getCodigo().equals(codigo))
+//                .findAny()
+//                .orElse(null);
+        Bilhete bilhete = null;
 
-        bilhetesNaoPagos.remove(bilhete);
+        Validate.notNull(bilhete);
         
         saldo = saldo.subtract(bilhete.getValor());
         

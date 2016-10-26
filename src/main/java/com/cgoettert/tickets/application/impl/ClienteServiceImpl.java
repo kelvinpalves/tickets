@@ -37,9 +37,9 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public BigDecimal getSaldo(String cpfCnpj) {
+    public Cliente getCliente(String cpfCnpj) {
         Cliente usuario = clienteRepository.get(cpfCnpj);
-        return usuario.getSaldo();
+        return usuario;
     }
 
     @Override
