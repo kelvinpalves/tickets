@@ -22,8 +22,8 @@ import org.apache.struts2.convention.annotation.Results;
  */
 @Namespace("/credito")
 @Results({
-    @Result(name = "error", location = "comprar/load.jsp"),
-    @Result(name = "input", location = "input.jsp")
+    @Result(name = "error", location = "../error.jsp"),
+    @Result(name = "input", location = "../input.jsp")
 })
 public class CreditoController extends ActionSupport {
 

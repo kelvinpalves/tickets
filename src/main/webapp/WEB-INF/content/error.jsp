@@ -8,6 +8,6 @@
     </head>
 
     <body>
-        <h2>INPUT ERROR!</h2>
+        <h2>ERROR!</h2>
     </body>
 </html>
