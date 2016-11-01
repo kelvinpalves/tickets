@@ -14,12 +14,13 @@ import java.util.Map;
  */
 public abstract class ServiceSupport implements Feedback {
 
-    private Map<String, Object> mensagens;
+    private final Map<String, Object> mensagens;
+
+    public ServiceSupport() {
+        this.mensagens = new HashMap<>();
+    }
 
     protected final void mensagem(String key, Object value) {
-        if (mensagens == null) {
-            mensagens = new HashMap<>();
-        }
         mensagens.put(key, value);
     }
 

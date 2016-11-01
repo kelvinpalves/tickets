@@ -3,29 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cgoettert.tickets.interfaces.web.struts;
+package com.cgoettert.tickets.interfaces.web.rest;
 
 import com.cgoettert.tickets.application.ClienteService;
 import com.cgoettert.tickets.domain.model.Cliente;
-import com.opensymphony.xwork2.ActionSupport;
 import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
 
 /**
  *
  * @author cgoettert
  */
-@Namespace("/credito")
-@Results({
-    @Result(name = "error", location = "../error.jsp"),
-    @Result(name = "input", location = "../input.jsp")
-})
-public class CreditoController extends ActionSupport {
+@Path("credito")
+public class CreditoController {
 
     @Inject
     private ClienteService clienteService;
@@ -38,19 +32,17 @@ public class CreditoController extends ActionSupport {
     @Setter
     private Integer valor;
 
-    @Action(value = "carregar")
+    @GET
     public String carregar() throws Exception {
         message = "Comprar Crédito";
         cliente = clienteService.getCliente("01926174003");
-        return SUCCESS;
+        return "";
     }
 
-    @Action(value = "comprar", results = {
-        @Result(name = "success", location = "carregar", type = "redirectAction")
-    })
+    @POST
     public String comprar() throws Exception {
         clienteService.comprarCredito("01926174003", valor);
-        return SUCCESS;
+        return "";
     }
 
 }

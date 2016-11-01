@@ -3,32 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cgoettert.tickets.interfaces.web.struts;
+package com.cgoettert.tickets.interfaces.web.rest;
 
 import com.cgoettert.tickets.application.ClienteService;
 import com.cgoettert.tickets.domain.model.Cliente;
-import static com.opensymphony.xwork2.Action.SUCCESS;
-import com.opensymphony.xwork2.ActionSupport;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import javax.inject.Inject;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.struts2.convention.annotation.Action;
-import org.apache.struts2.convention.annotation.Namespace;
-import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
 
 /**
  *
  * @author cgoettert
  */
-@Namespace("/bilhete")
-@Results({
-    @Result(name = "error", location = "error.jsp"),
-    @Result(name = "input", location = "input.jsp")
-})
-public class BilheteController extends ActionSupport {
+@Path("bilhete")
+public class BilheteController {
 
     @Inject
     private ClienteService clienteService;
@@ -46,20 +40,20 @@ public class BilheteController extends ActionSupport {
     @Getter
     private final List<String> opcoes = Arrays.asList("30min.", "1 hora.", "1 hora e meia.");
 
-    @Action(value = "carregar")
-    public String carregar() throws Exception {
+    @GET
+    public Map carregar() throws Exception {
         message = "Ativar Bilhete";
         cliente = clienteService.getCliente("01926174003");
-        return SUCCESS;
+        Map retorno = clienteService.getFeedback();
+        retorno.put("data", cliente);
+        return retorno;
     }
 
-    @Action(value = "ativar", results = {
-        @Result(name = "success", location = "carregar", type = "redirectAction")
-    })
+    @POST
     public String comprar() throws Exception {
 
         if (!opcoes.contains(opcao)) {
-            return ERROR;
+            return "";
         }
 
         Integer tempo;
@@ -77,7 +71,7 @@ public class BilheteController extends ActionSupport {
         }
 
         clienteService.ativarBilhete("01926174003", placa, tempo);
-        return SUCCESS;
+        return "";
     }
 
 }
