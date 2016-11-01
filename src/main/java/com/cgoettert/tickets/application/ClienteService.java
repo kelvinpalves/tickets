@@ -12,7 +12,7 @@ import com.cgoettert.tickets.domain.model.Cliente;
  *
  * @author cgoettert
  */
-public interface ClienteService {
+public interface ClienteService extends Feedback {
     
     public void comprarCredito(String cpfCnpj, Integer valor);
     

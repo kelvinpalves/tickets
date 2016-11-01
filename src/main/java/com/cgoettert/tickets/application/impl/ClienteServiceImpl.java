@@ -6,10 +6,10 @@
 package com.cgoettert.tickets.application.impl;
 
 import com.cgoettert.tickets.application.ClienteService;
+import com.cgoettert.tickets.application.ServiceSupport;
 import com.cgoettert.tickets.domain.model.Bilhete;
 import com.cgoettert.tickets.domain.model.Cliente;
 import com.cgoettert.tickets.domain.model.ClienteRepository;
-import java.math.BigDecimal;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -18,7 +18,7 @@ import javax.inject.Inject;
  * @author cgoettert
  */
 @RequestScoped
-public class ClienteServiceImpl implements ClienteService {
+public class ClienteServiceImpl extends ServiceSupport implements ClienteService {
 
     private ClienteRepository clienteRepository;
     
