@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping default-access="field">
+    <class name="com.cgoettert.tickets.domain.model.Cliente" table="cliente">
+        <id name="cpfCnpj" column="cpfCnpj" type="string"/>
+        <property name="nome" column="nome" type="string"/>
+        <property name="saldo" column="saldo" type="big_decimal"/>
+    </class>
+</hibernate-mapping>
