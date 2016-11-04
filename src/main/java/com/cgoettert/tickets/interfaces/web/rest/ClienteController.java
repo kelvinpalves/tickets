@@ -6,33 +6,26 @@
 package com.cgoettert.tickets.interfaces.web.rest;
 
 import com.cgoettert.tickets.application.ClienteService;
-import java.util.Map;
 import javax.inject.Inject;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author cgoettert
  */
-@Path("credito")
-public class CreditoController {
+@Path("cliente")
+public class ClienteController {
 
     @Inject
     private ClienteService clienteService;
 
-    @GET
-    public Map carregar() throws Exception {
-        clienteService.getCliente("01926174003");
-        return clienteService.getFeedback();
-    }
-
     @POST
-    public Map comprar(@FormParam("valor") Integer valor) throws Exception {
-        clienteService.comprarCredito("01926174003", valor);
-        return clienteService.getFeedback();
+    public Response cadastrar(@FormParam("nome") String nome, @FormParam("cpfCnpj") String cpfCnpj) throws Exception {
+        clienteService.cadastrar(nome, cpfCnpj);
+        return Response.ok(clienteService.getFeedback()).build();
     }
 
 }

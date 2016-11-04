@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.cgoettert.tickets.interfaces.web.rest.BilheteController.class);
+        resources.add(com.cgoettert.tickets.interfaces.web.rest.ClienteController.class);
         resources.add(com.cgoettert.tickets.interfaces.web.rest.CreditoController.class);
         resources.add(com.cgoettert.tickets.interfaces.web.rest.CrossOriginResourceSharingFilter.class);
     }

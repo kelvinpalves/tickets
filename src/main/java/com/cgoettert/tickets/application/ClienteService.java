@@ -5,6 +5,7 @@
  */
 package com.cgoettert.tickets.application;
 
+import com.cgoettert.tickets.application.utils.Feedback;
 import com.cgoettert.tickets.domain.model.Bilhete;
 import com.cgoettert.tickets.domain.model.Cliente;
 
@@ -14,6 +15,8 @@ import com.cgoettert.tickets.domain.model.Cliente;
  */
 public interface ClienteService extends Feedback {
     
+    public void cadastrar(String nome, String cpfCnpj);
+            
     public void comprarCredito(String cpfCnpj, Integer valor);
     
     public Cliente getCliente(String cpfCnpj);

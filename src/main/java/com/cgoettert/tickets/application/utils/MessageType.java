@@ -3,16 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cgoettert.tickets.application;
-
-import java.util.Map;
+package com.cgoettert.tickets.application.utils;
 
 /**
  *
  * @author cgoettert
  */
-public interface Feedback {
-
-    public Map<String, Object> getFeedback();
-
+public enum MessageType {
+    
+    INFO,
+    SUCCESS,
+    WARNING,
+    ERROR;
+    
 }

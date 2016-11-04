@@ -6,12 +6,14 @@
 package com.cgoettert.tickets.application.impl;
 
 import com.cgoettert.tickets.application.ClienteService;
-import com.cgoettert.tickets.application.ServiceSupport;
+import com.cgoettert.tickets.application.utils.MessageType;
+import com.cgoettert.tickets.application.utils.ServiceSupport;
 import com.cgoettert.tickets.domain.model.Bilhete;
 import com.cgoettert.tickets.domain.model.Cliente;
 import com.cgoettert.tickets.domain.model.ClienteRepository;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 /**
  *
@@ -21,7 +23,7 @@ import javax.inject.Inject;
 public class ClienteServiceImpl extends ServiceSupport implements ClienteService {
 
     private ClienteRepository clienteRepository;
-    
+
     private ClienteServiceImpl() {
     }
 
@@ -29,7 +31,19 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
     public ClienteServiceImpl(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
-        
+
+    @Override
+    @Transactional
+    public void cadastrar(String nome, String cpfCnpj) {
+        try {
+            Cliente cliente = new Cliente(nome, cpfCnpj);
+            clienteRepository.store(cliente);
+            feedMessage(MessageType.SUCCESS, "Cliente cadastrado com sucesso!");
+        } catch (Exception ex) {
+            feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
+        }
+    }
+
     @Override
     public void comprarCredito(String cpfCnpj, Integer valor) {
         Cliente usuario = clienteRepository.get(cpfCnpj);
@@ -38,8 +52,9 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
 
     @Override
     public Cliente getCliente(String cpfCnpj) {
-        Cliente usuario = clienteRepository.get(cpfCnpj);
-        return usuario;
+        Cliente cliente = clienteRepository.get(cpfCnpj);
+        feedData(Cliente.class, cliente);
+        return cliente;
     }
 
     @Override
@@ -53,5 +68,5 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
         Cliente usuario = clienteRepository.get(cpfCnpj);
         return usuario.regularizarBilhete(codigo);
     }
-    
+
 }
