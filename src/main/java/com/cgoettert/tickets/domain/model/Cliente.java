@@ -8,7 +8,9 @@ package com.cgoettert.tickets.domain.model;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -18,9 +20,14 @@ import org.apache.commons.lang3.Validate;
 @Getter
 public class Cliente {
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private Integer id;
     private String nome;
     private String cpfCnpj;
+    private String email;
     private BigDecimal saldo;
+    private String senha;
     private List<Telefone> telefones;
     private List<Veiculo> veiculos;
     private List<Compra> compras;
@@ -29,16 +36,16 @@ public class Cliente {
     private Cliente() {
     }
 
-    public Cliente(String nome, String cpfCnpj) {
+    public Cliente(String nome, String cpfCnpj, String email) {
         this.nome = nome;
         this.cpfCnpj = cpfCnpj;
+        this.email = email;
         this.saldo = new BigDecimal("0");
         this.telefones = new ArrayList<>();
         this.veiculos = new ArrayList<>();
         this.compras = new ArrayList<>();
         this.bilhetes = new ArrayList<>();
-        
-        veiculos.add(new Veiculo("INK8069", "polo prata"));
+        this.senha = "1234";
     }
 
     public void comprarCredito(Integer valor) {

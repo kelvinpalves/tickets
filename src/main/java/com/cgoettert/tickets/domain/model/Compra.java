@@ -7,7 +7,9 @@ package com.cgoettert.tickets.domain.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.RandomStringUtils;
 
 /**
@@ -17,6 +19,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 @Getter
 public class Compra {
     
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private Integer id;
     private String codigo;
     private BigDecimal valor;
     private Date dataRegistro;

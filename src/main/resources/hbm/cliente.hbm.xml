@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="com.cgoettert.tickets.domain.model" default-access="field"> 
+    <class name="Cliente" table="cliente">
+        <id name="id" column="id" type="integer">
+            <generator class="native"/>
+        </id>
+        <property name="cpfCnpj" column="cpfCnpj" type="string"/>
+        <property name="nome" column="nome" type="string"/>
+        <property name="email" column="email" type="string"/>
+        <property name="saldo" column="saldo" type="big_decimal"/>
+        <property name="senha" column="senha" type="string"/>
+        <bag name="veiculos" table="veiculo" cascade="all" lazy="false" >
+            <key column="id_cliente" />
+            <one-to-many class="Veiculo"/>
+        </bag>
+        <bag name="telefones" table="telefone" cascade="all" lazy="false" >
+            <key column="id_cliente" />
+            <one-to-many class="Telefone"/>
+        </bag>
+    </class>
+</hibernate-mapping>

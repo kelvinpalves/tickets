@@ -29,10 +29,12 @@ public class ApplicationConfig extends Application {
      * If required, comment out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        resources.add(com.cgoettert.tickets.interfaces.web.rest.BilheteController.class);
-        resources.add(com.cgoettert.tickets.interfaces.web.rest.ClienteController.class);
-        resources.add(com.cgoettert.tickets.interfaces.web.rest.CreditoController.class);
         resources.add(com.cgoettert.tickets.interfaces.web.rest.CrossOriginResourceSharingFilter.class);
+        resources.add(com.cgoettert.tickets.interfaces.web.rest.bilhete.BilheteController.class);
+        resources.add(com.cgoettert.tickets.interfaces.web.rest.cliente.ClienteController.class);
+        resources.add(com.cgoettert.tickets.interfaces.web.rest.credito.CreditoController.class);
+        resources.add(com.cgoettert.tickets.interfaces.web.rest.telefone.TelefoneController.class);
+        resources.add(com.cgoettert.tickets.interfaces.web.rest.veiculo.VeiculoController.class);
     }
     
 }

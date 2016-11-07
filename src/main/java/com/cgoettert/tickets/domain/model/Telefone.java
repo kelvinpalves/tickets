@@ -5,21 +5,31 @@
  */
 package com.cgoettert.tickets.domain.model;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  *
  * @author cgoettert
  */
+@Getter
 public class Telefone {
     
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private Integer id;
     private String ddd;
     private String numero;
+    private String descricao;
 
     private Telefone() {
     }
 
-    public Telefone(String ddd, String numero) {
+    public Telefone(String ddd, String numero, String descricao) {
         this.ddd = ddd;
         this.numero = numero;
+        this.descricao = descricao;
     }
     
 }

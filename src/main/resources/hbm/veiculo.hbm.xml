@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="com.cgoettert.tickets.domain.model" default-access="field"> 
+    <typedef name="TipoVeiculo" class="org.hibernate.type.EnumType">
+        <param name="enumClass">com.cgoettert.tickets.domain.model.TipoVeiculo</param>
+    </typedef>
+
+    <class name="Veiculo" table="veiculo">
+        <id name="id" column="id" type="integer">
+            <generator class="native"/>
+        </id>
+        <property name="placa" column="placa" type="string"/>
+        <property name="descricao" column="descricao" type="string"/>
+        <property name="debito" column="debito" type="boolean"/>
+        <property name="tipoVeiculo" column="tipo_veiculo" type="TipoVeiculo"/>
+    </class>
+</hibernate-mapping>

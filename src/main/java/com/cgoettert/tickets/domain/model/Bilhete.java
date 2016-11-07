@@ -8,7 +8,9 @@ package com.cgoettert.tickets.domain.model;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Date;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.Validate;
 
@@ -19,6 +21,9 @@ import org.apache.commons.lang3.Validate;
 @Getter
 public class Bilhete {
 
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private Integer id;
     private String codigo;
     private Date dataAtivacao;
     private BigDecimal valor;

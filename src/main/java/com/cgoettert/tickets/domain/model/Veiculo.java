@@ -5,7 +5,9 @@
  */
 package com.cgoettert.tickets.domain.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  *
@@ -13,16 +15,23 @@ import lombok.Getter;
  */
 @Getter
 public class Veiculo {
-    
+
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    private Integer id;
     private String placa;
     private String descricao;
+    private Boolean debito;
+    private TipoVeiculo tipoVeiculo;
 
     private Veiculo() {
     }
 
-    public Veiculo(String placa, String descricao) {
+    public Veiculo(String placa, String descricao, boolean debito, TipoVeiculo tipoVeiculo) {
         this.placa = placa;
         this.descricao = descricao;
+        this.tipoVeiculo = tipoVeiculo;
+        this.debito = debito;
     }
-    
+
 }

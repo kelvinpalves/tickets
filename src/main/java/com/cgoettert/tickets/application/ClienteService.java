@@ -15,7 +15,11 @@ import com.cgoettert.tickets.domain.model.Cliente;
  */
 public interface ClienteService extends Feedback {
     
-    public void cadastrar(String nome, String cpfCnpj);
+    public void novoCliente(String nome, String cpfCnpj, String email);
+    
+    public void novoTelefone(String cpfCnpj, String ddd, String numero, String descricao);
+    
+    public void novoVeiculo(String cpfCnpj, String placa, String tipo, String descricao);
             
     public void comprarCredito(String cpfCnpj, Integer valor);
     
