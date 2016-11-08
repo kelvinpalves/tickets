@@ -7,6 +7,8 @@ package com.cgoettert.tickets.interfaces.web.rest.veiculo;
 
 import com.cgoettert.tickets.application.ClienteService;
 import com.cgoettert.tickets.domain.model.TipoVeiculo;
+import com.cgoettert.tickets.interfaces.web.rest.config.auth.AuthenticatedUser;
+import com.cgoettert.tickets.interfaces.web.rest.config.auth.Usuario;
 import java.util.Map;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -22,11 +24,15 @@ import javax.ws.rs.core.Response;
 public class VeiculoController {
 
     @Inject
+    @AuthenticatedUser
+    private Usuario user;
+
+    @Inject
     private ClienteService clienteService;
 
     @GET
     public Response buscar() throws Exception {
-        clienteService.getCliente("01926174003");
+        clienteService.getCliente(user.getUsername());
         Map ret = clienteService.getFeedback();
         ret.put("tipos", TipoVeiculo.values());
         return Response.ok(ret).build();
@@ -35,7 +41,7 @@ public class VeiculoController {
     @POST
     public Response cadastrar(NovoVeiculoComando veiculo) throws Exception {
         clienteService.novoVeiculo(
-                "01926174003",
+                user.getUsername(),
                 veiculo.getPlaca(),
                 veiculo.getTipo(),
                 veiculo.getDescricao());

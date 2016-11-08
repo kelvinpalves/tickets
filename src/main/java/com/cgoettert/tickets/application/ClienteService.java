@@ -17,16 +17,18 @@ public interface ClienteService extends Feedback {
     
     public void novoCliente(String nome, String cpfCnpj, String email);
     
-    public void novoTelefone(String cpfCnpj, String ddd, String numero, String descricao);
+    public void novoTelefone(String username, String ddd, String numero, String descricao);
     
-    public void novoVeiculo(String cpfCnpj, String placa, String tipo, String descricao);
+    public void novoVeiculo(String username, String placa, String tipo, String descricao);
             
-    public void comprarCredito(String cpfCnpj, Integer valor);
+    public void comprarCredito(String username, Integer valor);
     
-    public Cliente getCliente(String cpfCnpj);
+    public Cliente getCliente(String username);
     
-    public Bilhete ativarBilhete(String cpfCnpj, String placa, Integer minutos);
+    public Bilhete ativarBilhete(String username, String placa, Integer minutos);
     
-    public Bilhete regularizarBilhete(String cpfCnpj, String codigo);
+    public Bilhete regularizarBilhete(String username, String codigo);
+    
+    public boolean auth(String username, String senha);
         
 }

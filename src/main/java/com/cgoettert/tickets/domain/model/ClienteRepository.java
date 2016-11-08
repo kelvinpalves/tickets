@@ -13,6 +13,8 @@ public interface ClienteRepository {
     
     public Cliente get(String cpfCnpj);
     
+    public void get(String cpfCnpj, String senha);
+    
     public void store(Cliente usuario);
     
 }

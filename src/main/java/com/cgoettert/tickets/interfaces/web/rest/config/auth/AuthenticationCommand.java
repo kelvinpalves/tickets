@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cgoettert.tickets.interfaces.web.rest.telefone;
+package com.cgoettert.tickets.interfaces.web.rest.config.auth;
 
 import lombok.Data;
 
@@ -12,10 +12,9 @@ import lombok.Data;
  * @author cgoettert
  */
 @Data
-public class NovoTelefoneComando {
-
-    private String ddd;
-    private String numero;
-    private String descricao;
-
+public class AuthenticationCommand {
+    
+    private String usuario;
+    private String senha;
+    
 }

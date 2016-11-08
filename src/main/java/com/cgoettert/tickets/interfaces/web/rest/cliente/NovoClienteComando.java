@@ -5,15 +5,13 @@
  */
 package com.cgoettert.tickets.interfaces.web.rest.cliente;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  *
  * @author cgoettert
  */
-@Getter
-@Setter
+@Data
 public class NovoClienteComando {
     
     private String nome;

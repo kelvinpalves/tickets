@@ -27,6 +27,8 @@ public class Cliente {
     private String cpfCnpj;
     private String email;
     private BigDecimal saldo;
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
     private String senha;
     private List<Telefone> telefones;
     private List<Veiculo> veiculos;

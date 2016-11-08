@@ -49,9 +49,9 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
 
     @Override
     @Transactional
-    public void novoTelefone(final String cpfCnpj, final String ddd, final String numero, final String descricao) {
+    public void novoTelefone(final String username, final String ddd, final String numero, final String descricao) {
         try {
-            Cliente cliente = clienteRepository.get(cpfCnpj);
+            Cliente cliente = clienteRepository.get(username);
             Telefone telefone = new Telefone(ddd, numero, descricao);
             cliente.getTelefones().add(telefone);
             feedMessage(MessageType.SUCCESS, "Telefone cadastrado com sucesso!");
@@ -62,9 +62,9 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
 
     @Override
     @Transactional
-    public void novoVeiculo(final String cpfCnpj, final String placa, final String tipo, final String descricao) {
+    public void novoVeiculo(final String username, final String placa, final String tipo, final String descricao) {
         try {
-            Cliente cliente = clienteRepository.get(cpfCnpj);
+            Cliente cliente = clienteRepository.get(username);
             Veiculo veiculo = new Veiculo(placa, descricao, true, TipoVeiculo.valueOf(tipo));
             cliente.getVeiculos().add(veiculo);
             feedMessage(MessageType.SUCCESS, "Veiculo cadastrado com sucesso!");
@@ -75,30 +75,47 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
 
     @Override
     @Transactional
-    public void comprarCredito(final String cpfCnpj, final Integer valor) {
-        Cliente usuario = clienteRepository.get(cpfCnpj);
+    public void comprarCredito(final String username, final Integer valor) {
+        Cliente usuario = clienteRepository.get(username);
         usuario.comprarCredito(valor);
     }
 
     @Override
-    public Cliente getCliente(final String cpfCnpj) {
-        Cliente cliente = clienteRepository.get(cpfCnpj);
-        feedData(Cliente.class, cliente);
-        return cliente;
+    public Cliente getCliente(final String username) {
+        try {
+            Cliente cliente = clienteRepository.get(username);
+            feedData(Cliente.class, cliente);
+            return cliente;
+        } catch (Exception ex) {
+            feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
+            return null;
+        }
     }
 
     @Override
     @Transactional
-    public Bilhete ativarBilhete(final String cpfCnpj, final String placa, final Integer minutos) {
-        Cliente usuario = clienteRepository.get(cpfCnpj);
+    public Bilhete ativarBilhete(final String username, final String placa, final Integer minutos) {
+        Cliente usuario = clienteRepository.get(username);
         return usuario.ativarBilhete(placa, minutos);
     }
 
     @Override
     @Transactional
-    public Bilhete regularizarBilhete(final String cpfCnpj, final String codigo) {
-        Cliente usuario = clienteRepository.get(cpfCnpj);
+    public Bilhete regularizarBilhete(final String username, final String codigo) {
+        Cliente usuario = clienteRepository.get(username);
         return usuario.regularizarBilhete(codigo);
+    }
+
+    @Override
+    public boolean auth(final String username, final String senha) {
+        try {
+            clienteRepository.get(username, senha);
+            feedMessage(MessageType.SUCCESS, "Autenticação efetuada com sucesso!");
+            return true;
+        } catch (Exception ex) {
+            feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
+            return false;
+        }
     }
 
 }

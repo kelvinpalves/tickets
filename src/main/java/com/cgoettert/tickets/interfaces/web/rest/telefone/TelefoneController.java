@@ -5,11 +5,10 @@
  */
 package com.cgoettert.tickets.interfaces.web.rest.telefone;
 
-import com.cgoettert.tickets.interfaces.web.rest.*;
 import com.cgoettert.tickets.application.ClienteService;
-import com.cgoettert.tickets.domain.model.Cliente;
+import com.cgoettert.tickets.interfaces.web.rest.config.auth.AuthenticatedUser;
+import com.cgoettert.tickets.interfaces.web.rest.config.auth.Usuario;
 import javax.inject.Inject;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -23,18 +22,22 @@ import javax.ws.rs.core.Response;
 public class TelefoneController {
 
     @Inject
+    @AuthenticatedUser
+    private Usuario user;
+
+    @Inject
     private ClienteService clienteService;
 
     @GET
     public Response buscar() throws Exception {
-        clienteService.getCliente("01926174003");
+        clienteService.getCliente(user.getUsername());
         return Response.ok(clienteService.getFeedback()).build();
     }
 
     @POST
     public Response cadastrar(NovoTelefoneComando telefone) throws Exception {
         clienteService.novoTelefone(
-                "01926174003",
+                user.getUsername(),
                 telefone.getDdd(),
                 telefone.getNumero(),
                 telefone.getDescricao());

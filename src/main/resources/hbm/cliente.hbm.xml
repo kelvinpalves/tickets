@@ -8,7 +8,7 @@
         <id name="id" column="id" type="integer">
             <generator class="native"/>
         </id>
-        <property name="cpfCnpj" column="cpfCnpj" type="string"/>
+        <property name="cpfCnpj" column="cpfCnpj" type="string" unique="true" />
         <property name="nome" column="nome" type="string"/>
         <property name="email" column="email" type="string"/>
         <property name="saldo" column="saldo" type="big_decimal"/>

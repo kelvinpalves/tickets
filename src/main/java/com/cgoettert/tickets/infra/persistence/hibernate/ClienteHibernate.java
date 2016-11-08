@@ -17,7 +17,7 @@ import javax.enterprise.context.RequestScoped;
 public class ClienteHibernate extends HibernateRepository implements ClienteRepository {
 
     @Override
-    public Cliente get(String cpfCnpj) {
+    public Cliente get(final String cpfCnpj) {
         return (Cliente) getEm()
                 .createQuery("select c from Cliente c where c.cpfCnpj = :cpfCnpj")
                 .setParameter("cpfCnpj", cpfCnpj)
@@ -25,7 +25,15 @@ public class ClienteHibernate extends HibernateRepository implements ClienteRepo
     }
 
     @Override
-    public void store(Cliente usuario) {
+    public void get(final String cpfCnpj, final String senha) {
+        getEm().createQuery("select c.cpfCnpj from Cliente c where c.cpfCnpj = :cpfCnpj and c.senha = :senha")
+                .setParameter("cpfCnpj", cpfCnpj)
+                .setParameter("senha", senha)
+                .getSingleResult();
+    }
+
+    @Override
+    public void store(final Cliente usuario) {
         getEm().persist(usuario);
     }
 
