@@ -12,15 +12,15 @@ import lombok.Getter;
  * @author cgoettert
  */
 @Getter
-public class Usuario {
+public class User {
 
     private String username;
 
-    public Usuario() {
+    public User() {
         this.username = "";
     }
 
-    public Usuario(String username) {
+    public User(String username) {
         this.username = username;
     }
 

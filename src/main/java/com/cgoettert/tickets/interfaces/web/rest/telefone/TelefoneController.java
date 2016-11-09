@@ -7,7 +7,7 @@ package com.cgoettert.tickets.interfaces.web.rest.telefone;
 
 import com.cgoettert.tickets.application.ClienteService;
 import com.cgoettert.tickets.interfaces.web.rest.config.auth.AuthenticatedUser;
-import com.cgoettert.tickets.interfaces.web.rest.config.auth.Usuario;
+import com.cgoettert.tickets.interfaces.web.rest.config.auth.User;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -23,7 +23,7 @@ public class TelefoneController {
 
     @Inject
     @AuthenticatedUser
-    private Usuario user;
+    private User user;
 
     @Inject
     private ClienteService clienteService;

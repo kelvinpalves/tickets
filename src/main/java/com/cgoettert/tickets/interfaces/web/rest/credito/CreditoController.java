@@ -7,7 +7,7 @@ package com.cgoettert.tickets.interfaces.web.rest.credito;
 
 import com.cgoettert.tickets.application.ClienteService;
 import com.cgoettert.tickets.interfaces.web.rest.config.auth.AuthenticatedUser;
-import com.cgoettert.tickets.interfaces.web.rest.config.auth.Usuario;
+import com.cgoettert.tickets.interfaces.web.rest.config.auth.User;
 import java.util.Map;
 import javax.inject.Inject;
 import javax.ws.rs.FormParam;
@@ -24,7 +24,7 @@ public class CreditoController {
 
     @Inject
     @AuthenticatedUser
-    private Usuario user;
+    private User user;
     
     @Inject
     private ClienteService clienteService;
