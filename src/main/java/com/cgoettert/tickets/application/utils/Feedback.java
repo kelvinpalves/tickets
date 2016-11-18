@@ -24,6 +24,9 @@ public class Feedback {
 
     public Feedback() {
         this.feeds = new HashMap<>();
+        this.feeds.put(TYPE_MESSAGE, new ArrayList<>());
+        this.feeds.put(TYPE_DATA, new HashMap<>());
+        this.feeds.put(EXECUTED, true);
     }
 
     public final void feedData(String key, Object value) {
