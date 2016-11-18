@@ -7,6 +7,7 @@ package com.cgoettert.tickets.interfaces.web.rest.config.auth;
 
 import com.auth0.jwt.JWTSigner;
 import com.cgoettert.tickets.application.ClienteService;
+import com.cgoettert.tickets.interfaces.web.rest.ControllerSupport;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
@@ -19,7 +20,7 @@ import javax.ws.rs.core.Response;
  * @author cgoettert
  */
 @Path("/auth")
-public class AuthenticationController {
+public class AuthenticationController extends ControllerSupport {
 
     @Inject
     private ClienteService clienteService;
@@ -32,18 +33,17 @@ public class AuthenticationController {
         if (!authenticate(login.getUsuario(), login.getSenha())) {
             return Response
                     .status(Response.Status.UNAUTHORIZED)
-                    .entity(clienteService.getFeedback())
+                    .entity(clienteService.getFeed())
                     .build();
         }
 
         // Issue a token for the user
         String token = issueToken(login.getUsuario());
 
-        Map retorno = new HashMap<>();
-        retorno.put("token", token);
-
+        getFeedback().feedData("token", token);
+        
         // Return the token on the response
-        return Response.ok(retorno).build();
+        return Response.ok(getFeedback().get()).build();
     }
 
     private boolean authenticate(final String username, final String password) {

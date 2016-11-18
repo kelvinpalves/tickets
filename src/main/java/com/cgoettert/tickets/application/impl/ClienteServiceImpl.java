@@ -41,9 +41,9 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
         try {
             Cliente cliente = new Cliente(nome, cpfCnpj, email);
             clienteRepository.store(cliente);
-            feedMessage(MessageType.SUCCESS, "Cliente cadastrado com sucesso!");
+            getFeedback().feedMessage(MessageType.SUCCESS, "Cliente cadastrado com sucesso!");
         } catch (Exception ex) {
-            feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
+            getFeedback().feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
         }
     }
 
@@ -54,9 +54,9 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
             Cliente cliente = clienteRepository.get(username);
             Telefone telefone = new Telefone(ddd, numero, descricao);
             cliente.getTelefones().add(telefone);
-            feedMessage(MessageType.SUCCESS, "Telefone cadastrado com sucesso!");
+            getFeedback().feedMessage(MessageType.SUCCESS, "Telefone cadastrado com sucesso!");
         } catch (Exception ex) {
-            feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
+            getFeedback().feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
         }
     }
 
@@ -67,9 +67,9 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
             Cliente cliente = clienteRepository.get(username);
             Veiculo veiculo = new Veiculo(placa, descricao, true, TipoVeiculo.valueOf(tipo));
             cliente.getVeiculos().add(veiculo);
-            feedMessage(MessageType.SUCCESS, "Veiculo cadastrado com sucesso!");
+            getFeedback().feedMessage(MessageType.SUCCESS, "Veiculo cadastrado com sucesso!");
         } catch (Exception ex) {
-            feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
+            getFeedback().feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
         }
     }
 
@@ -84,10 +84,10 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
     public Cliente getCliente(final String username) {
         try {
             Cliente cliente = clienteRepository.get(username);
-            feedData(Cliente.class, cliente);
+            getFeedback().feedData(Cliente.class, cliente);
             return cliente;
         } catch (Exception ex) {
-            feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
+            getFeedback().feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
             return null;
         }
     }
@@ -110,10 +110,10 @@ public class ClienteServiceImpl extends ServiceSupport implements ClienteService
     public boolean auth(final String username, final String senha) {
         try {
             clienteRepository.get(username, senha);
-            feedMessage(MessageType.SUCCESS, "Autenticação efetuada com sucesso!");
+            getFeedback().feedMessage(MessageType.SUCCESS, "Autenticação efetuada com sucesso!");
             return true;
         } catch (Exception ex) {
-            feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
+            getFeedback().feedMessage(MessageType.ERROR, ex.getLocalizedMessage());
             return false;
         }
     }

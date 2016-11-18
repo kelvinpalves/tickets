@@ -6,6 +6,7 @@
 package com.cgoettert.tickets.interfaces.web.rest.credito;
 
 import com.cgoettert.tickets.application.ClienteService;
+import com.cgoettert.tickets.interfaces.web.rest.ControllerSupport;
 import com.cgoettert.tickets.interfaces.web.rest.config.auth.AuthenticatedUser;
 import com.cgoettert.tickets.interfaces.web.rest.config.auth.User;
 import java.util.Map;
@@ -20,7 +21,7 @@ import javax.ws.rs.Path;
  * @author cgoettert
  */
 @Path("credito")
-public class CreditoController {
+public class CreditoController extends ControllerSupport {
 
     @Inject
     @AuthenticatedUser
@@ -32,13 +33,13 @@ public class CreditoController {
     @GET
     public Map carregar() throws Exception {
         clienteService.getCliente(user.getUsername());
-        return clienteService.getFeedback();
+        return clienteService.getFeed();
     }
 
     @POST
     public Map comprar(@FormParam("valor") Integer valor) throws Exception {
         clienteService.comprarCredito(user.getUsername(), valor);
-        return clienteService.getFeedback();
+        return clienteService.getFeed();
     }
 
 }

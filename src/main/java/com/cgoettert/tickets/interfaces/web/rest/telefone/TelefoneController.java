@@ -6,6 +6,7 @@
 package com.cgoettert.tickets.interfaces.web.rest.telefone;
 
 import com.cgoettert.tickets.application.ClienteService;
+import com.cgoettert.tickets.interfaces.web.rest.ControllerSupport;
 import com.cgoettert.tickets.interfaces.web.rest.config.auth.AuthenticatedUser;
 import com.cgoettert.tickets.interfaces.web.rest.config.auth.User;
 import javax.inject.Inject;
@@ -19,7 +20,7 @@ import javax.ws.rs.core.Response;
  * @author cgoettert
  */
 @Path("telefone")
-public class TelefoneController {
+public class TelefoneController extends ControllerSupport {
 
     @Inject
     @AuthenticatedUser
@@ -31,7 +32,7 @@ public class TelefoneController {
     @GET
     public Response buscar() throws Exception {
         clienteService.getCliente(user.getUsername());
-        return Response.ok(clienteService.getFeedback()).build();
+        return Response.ok(clienteService.getFeed()).build();
     }
 
     @POST
@@ -41,7 +42,7 @@ public class TelefoneController {
                 telefone.getDdd(),
                 telefone.getNumero(),
                 telefone.getDescricao());
-        return Response.ok(clienteService.getFeedback()).build();
+        return Response.ok(clienteService.getFeed()).build();
     }
 
 }

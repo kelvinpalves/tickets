@@ -37,7 +37,7 @@ public class BilheteController {
     @GET
     public Response carregar() throws Exception {
         clienteService.getCliente("01926174003");
-        return Response.ok(clienteService.getFeedback()).build();
+        return Response.ok(clienteService.getFeed()).build();
     }
 
     @POST
@@ -48,7 +48,7 @@ public class BilheteController {
         }
 
         clienteService.ativarBilhete("01926174003", placa, opcao);
-        return clienteService.getFeedback();
+        return clienteService.getFeed();
     }
 
 }

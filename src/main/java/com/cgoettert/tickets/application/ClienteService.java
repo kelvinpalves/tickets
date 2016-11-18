@@ -5,7 +5,7 @@
  */
 package com.cgoettert.tickets.application;
 
-import com.cgoettert.tickets.application.utils.Feedback;
+import com.cgoettert.tickets.application.utils.Feed;
 import com.cgoettert.tickets.domain.model.Bilhete;
 import com.cgoettert.tickets.domain.model.Cliente;
 
@@ -13,7 +13,7 @@ import com.cgoettert.tickets.domain.model.Cliente;
  *
  * @author cgoettert
  */
-public interface ClienteService extends Feedback {
+public interface ClienteService extends Feed {
     
     public void novoCliente(String nome, String cpfCnpj, String email);
     

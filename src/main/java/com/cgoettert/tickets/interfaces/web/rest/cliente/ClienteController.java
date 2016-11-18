@@ -7,6 +7,7 @@ package com.cgoettert.tickets.interfaces.web.rest.cliente;
 
 import com.cgoettert.tickets.application.ClienteService;
 import com.cgoettert.tickets.domain.model.Cliente;
+import com.cgoettert.tickets.interfaces.web.rest.ControllerSupport;
 import com.cgoettert.tickets.interfaces.web.rest.config.auth.AuthenticatedUser;
 import com.cgoettert.tickets.interfaces.web.rest.config.auth.NotSecured;
 import com.cgoettert.tickets.interfaces.web.rest.config.auth.User;
@@ -21,7 +22,7 @@ import javax.ws.rs.core.Response;
  * @author cgoettert
  */
 @Path("cliente")
-public class ClienteController {
+public class ClienteController extends ControllerSupport {
 
     @Inject
     @AuthenticatedUser
@@ -33,7 +34,7 @@ public class ClienteController {
     @GET
     public Response buscar() throws Exception {
         clienteService.getCliente(user.getUsername());
-        return Response.ok(clienteService.getFeedback()).build();
+        return Response.ok(clienteService.getFeed()).build();
     }
 
     @POST
@@ -44,7 +45,7 @@ public class ClienteController {
                 cliente.getCpfCnpj(),
                 cliente.getEmail());
         
-        return Response.ok(clienteService.getFeedback()).build();
+        return Response.ok(clienteService.getFeed()).build();
     }
 
 }
